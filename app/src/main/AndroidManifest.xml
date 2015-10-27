@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.dominik.trainings" >
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity_"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SettingsActivity_"
+            android:label="@string/title_activity_settings" >
+        </activity>
+
+        <service
+            android:name=".TrainingService_"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.dominik.trainings.TrainingService_" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".TrainingFinishOverview"
+            android:label="@string/title_activity_training_finish_overview" >
+        </activity>
+        <activity
+            android:name=".TrainingListActivity_"
+            android:label="@string/title_activity_training_list" >
+        </activity>
+    </application>
+
+</manifest>
