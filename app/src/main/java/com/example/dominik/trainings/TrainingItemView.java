@@ -4,6 +4,8 @@ import android.content.Context;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.dominik.trainings.entities.Training;
+
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
 
@@ -27,8 +29,8 @@ public class TrainingItemView extends LinearLayout{
     }
 
     public void bind(Training training) {
-        type.setText(training.getType());
-        duration.setText(Double.toString(training.getDuration()));
+        type.setText(Integer.toString(training.getActivityId()));
+        duration.setText(Double.toString(training.getActiveTime()));
         distance.setText(Double.toString(training.getDistance()));
     }
 }

@@ -5,26 +5,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.example.dominik.trainings.entities.Training;
+
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
 
 import java.util.List;
 
+import io.realm.Realm;
+
 @EBean
 public class TrainingListAdapter extends BaseAdapter {
 
     List<Training> trainings;
-
-    DbHelper dbHelper;
 
     @RootContext
     Context context;
 
     @AfterInject
     void initAdapter() {
-        dbHelper = new DbHelper(context, DbHelper.DATABASE_NAME, null, 1);
-        trainings = dbHelper.getAllTrainings();
+        trainings = Realm.getDefaultInstance().allObjects(Training.class);
     }
 
     @Override

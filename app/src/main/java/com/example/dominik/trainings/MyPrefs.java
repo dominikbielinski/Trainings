@@ -26,4 +26,7 @@ public interface MyPrefs {
     @DefaultInt(100)
     int accuracy();
 
+    @DefaultInt(20)
+    int webUpdates();
+
 }

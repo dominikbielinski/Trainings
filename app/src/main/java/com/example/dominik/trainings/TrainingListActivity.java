@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.dominik.trainings.entities.Training;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
@@ -61,7 +63,7 @@ public class TrainingListActivity extends AppCompatActivity {
 
     @ItemClick(R.id.trainingListInActivity)
     void trainingListItemClicked(Training training) {
-        makeText(this, training.getType() + " " + training.getDescription(), Toast.LENGTH_SHORT).show();
+        makeText(this, training.getActivityId() + " " + training.getDescription(), Toast.LENGTH_SHORT).show();
         int a =5;
     }
 }

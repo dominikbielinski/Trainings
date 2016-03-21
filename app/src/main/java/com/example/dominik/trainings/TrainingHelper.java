@@ -1,5 +1,9 @@
 package com.example.dominik.trainings;
 
+import android.location.Location;
+
+import com.example.dominik.trainings.entities.Movepoint;
+
 import java.util.List;
 
 /**
@@ -7,30 +11,34 @@ import java.util.List;
  */
 public class TrainingHelper {
 
-    public static double calculateDistance(List<MovePoint> movePointList) {
+    public static double calculateDistance(List<Movepoint> movepointList) {
 
         int index = 0;
 
         double totalDistance = 0;
 
-        for (MovePoint movePoint : movePointList) {
+        Movepoint movepoint2 = null;
 
-            MovePoint movePoint2 = movePointList.get(index+1);
+        for (Movepoint movepoint : movepointList) {
 
-            if (movePoint2 != null) {
+            if (index < movepointList.size()-1) {
+                movepoint2 = movepointList.get(index + 1);
+            }
 
-                double lat1 = movePoint.getLatitude();
-                double lon1 = movePoint.getLongitude();
+            if (movepoint2 != null) {
 
-                double lat2 = movePoint2.getLatitude();
-                double lon2 = movePoint2.getLongitude();
+                double lat1 = movepoint.getLatitude();
+                double lon1 = movepoint.getLongitude();
+
+                double lat2 = movepoint2.getLatitude();
+                double lon2 = movepoint2.getLongitude();
 
                 double el1 = 0.0;
                 double el2 = 0.0;
 
-                if ((movePoint.getAltitude() != 0) && (movePoint2.getAltitude() != 0)) {
-                    el1 = movePoint.getAltitude();
-                    el2 = movePoint2.getAltitude();
+                if ((movepoint.getAltitude() != 0) && (movepoint2.getAltitude() != 0)) {
+                    el1 = movepoint.getAltitude();
+                    el2 = movepoint2.getAltitude();
                 }
 
                 final int R = 6371;
@@ -43,17 +51,48 @@ public class TrainingHelper {
                 Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
                 double distance = R * c * 1000;
 
-                double height = 0;
+//                double height = 0;
+//
+//                distance = Math.pow(distance, 2) + Math.pow(height, 2);
 
-                distance = Math.pow(distance, 2) + Math.pow(height, 2);
-
-                totalDistance += Math.sqrt(distance);
+                totalDistance += distance;
             }
+            index++;
         }
         return totalDistance;
     }
 
-public static double calculateDuration(List<MovePoint>movePointList){
-        return 2000;
+    public static double calculateDistance(Location lastLocation, Location location) {
+
+        if (lastLocation == null) return 0;
+        double lat1 = lastLocation.getLatitude();
+        double lon1 = lastLocation.getLongitude();
+
+        double lat2 = location.getLatitude();
+        double lon2 = location.getLongitude();
+
+        double el1 = 0.0;
+        double el2 = 0.0;
+
+        if ((lastLocation.getAltitude() != 0) && (location.getAltitude() != 0)) {
+            el1 = lastLocation.getAltitude();
+            el2 = location.getAltitude();
         }
-        }
+
+        final int R = 6371;
+
+        Double latDistance = Math.toRadians(lat2 - lat1);
+        Double lonDistance = Math.toRadians(lon2 - lon1);
+        Double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double distance = R * c * 1000;
+
+//        double height = 0;
+//
+//        distance = Math.pow(distance, 2) + Math.pow(height, 2);
+
+        return distance;
+    }
+}

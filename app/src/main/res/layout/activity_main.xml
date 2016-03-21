@@ -40,7 +40,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/heartRate"
+        android:id="@+id/heartRateView"
         android:layout_below="@+id/bpm"
         android:layout_alignParentLeft="true" />
 
@@ -50,7 +50,7 @@
         android:text="Latitude"
         android:id="@+id/lat"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/heartRate"
+        android:layout_below="@+id/heartRateView"
         android:layout_alignParentLeft="true" />
 
     <TextView
@@ -99,5 +99,43 @@
         android:id="@+id/trainingList"
         android:layout_below="@+id/options"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Difference [m]"
+        android:id="@+id/diff"
+        android:layout_below="@+id/gps_status"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/diff_value"
+        android:layout_below="@+id/diff"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Accuracy"
+        android:id="@+id/accuracy"
+        android:layout_below="@+id/diff_value"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/accuracy_value"
+        android:layout_below="@+id/accuracy"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SEND"
+        android:id="@+id/send"
+        android:layout_below="@+id/accuracy_value"
+        android:layout_toEndOf="@+id/accuracy_value" />
 
 </RelativeLayout>

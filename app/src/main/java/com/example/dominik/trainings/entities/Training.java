@@ -1,24 +1,47 @@
-package com.example.dominik.trainings;
+package com.example.dominik.trainings.entities;
 
 import java.util.Date;
-import java.util.List;
+
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by Dominik on 2015-10-23.
  */
-public class Training {
+public class Training extends RealmObject {
 
-    long id;
-    String name;
-    String description;
-    List<MovePoint> movePointList;
-    double duration;
-    double speed;
-    double distance;
-    double activeTime;
-    Date startDate;
-    Date stopDate;
-    String type;
+    @PrimaryKey
+    private int id;
+
+    private int remoteId;
+    private int activityId;
+    private String name;
+    private String description;
+    private double duration;
+    private double speed;
+    private double distance;
+    private double activeTime;
+    private Date startDate;
+    private Date stopDate;
+    private int synced;
+    private RealmList<Movepoint> movepoints;
+
+    public int getSynced() {
+        return synced;
+    }
+
+    public void setSynced(int synced) {
+        this.synced = synced;
+    }
+
+    public int getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(int activityId) {
+        this.activityId = activityId;
+    }
 
     public double getActiveTime() {return activeTime;}
 
@@ -66,19 +89,11 @@ public class Training {
         this.distance = distance;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -98,9 +113,19 @@ public class Training {
         this.name = name;
     }
 
-    public List<MovePoint> getMovePointList() {
-        return movePointList;
+    public int getRemoteId() {
+        return remoteId;
     }
 
-    public void setMovePointList(List<MovePoint> movePointList) {this.movePointList = movePointList;}
+    public void setRemoteId(int remoteId) {
+        this.remoteId = remoteId;
+    }
+
+    public RealmList<Movepoint> getMovepoints() {
+        return movepoints;
+    }
+
+    public void setMovepoints(RealmList<Movepoint> movepoints) {
+        this.movepoints = movepoints;
+    }
 }
